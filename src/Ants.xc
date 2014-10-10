@@ -69,7 +69,6 @@ uint calculate_ant_current_food(Ant ant, uint world[][4])
 
 Ant create_ant (uint id, uint world[][4], Location location)
 {
-
     Ant ant;
     ant.id = id;
     ant.location = location;
@@ -94,11 +93,11 @@ void run_ant (int index)
     Direction direction;
     Location least_fertile_locations[4] = { { 1, 0 }, { 2, 1 }, { 2, 0 }, { 0, 1 } };
     uint ant_world[3][4] =
-           {
-                   { 10, 0, 1, 7 },
-                   { 2, 10, 0, 3 },
-                   { 6, 8, 7, 6 }
-           };
+    {
+            { 10, 0, 1, 7 },
+            { 2, 10, 0, 3 },
+            { 6, 8, 7, 6 }
+    };
     Ant ant = create_ant(index, ant_world, least_fertile_locations[index]);
     for (int i = 0; i < 2; i++) {
         direction = get_most_fertile_move(ant_world, ant.location);
@@ -109,9 +108,15 @@ void run_ant (int index)
 
 int main(void)
 {
-        par (int i=0; i<4; i++)
-        {
-            on stdcore[i] : run_ant(i);
-        }
+    uint world[3][4] =
+    {
+            { 10, 0, 1, 7 },
+            { 2, 10, 0, 3 },
+            { 6, 8, 7, 6 }
+    };
+    Location queen_ant_location = {1, 1};
+    Location worker_locations[2] = {{0, 1}, {1, 0}};
+
+
     return 0;
 }
